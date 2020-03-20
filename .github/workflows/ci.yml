@@ -28,6 +28,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Prepare
-        run: yarn
+        run: yarn --frozen-lockfile
       - name: Lint
         run: yarn lint
