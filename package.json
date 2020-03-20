@@ -4,6 +4,8 @@
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "start": "react-native start",
+    "lint": "prettylint **/*.{ts,js,json,md}",
+    "style-fix": "prettylint --fix **/*.{ts,js,json,md}",
     "test": "jest"
   },
   "dependencies": {
@@ -23,6 +25,8 @@
     "@types/react-native": "~0.60.23",
     "babel-preset-expo": "~8.0.0",
     "jest-expo": "~36.0.1",
+    "prettier": "1.19.1",
+    "prettylint": "^1.0.0",
     "typescript": "~3.6.3"
   },
   "jest": {
