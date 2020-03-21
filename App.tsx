@@ -1,18 +1,10 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import styled from 'styled-components';
+import SignupScreen from "./components/SignupScreen";
+import {ApplicationProvider} from "@ui-kitten/components";
+import {mapping, light} from "@eva-design/eva";
 
-const MainAppView = styled(View)`
-    flex: 1;
-    background-color: #fff;
-    align-items: center;
-    justify-content: center;
-`;
-
-export default function App() {
-  return (
-    <MainAppView>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </MainAppView>
-  );
-}
+export default () => (
+    <ApplicationProvider mapping={mapping} theme={light}>
+        <SignupScreen />
+    </ApplicationProvider>
+)
