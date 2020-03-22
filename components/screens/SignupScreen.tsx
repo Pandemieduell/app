@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {Button, Card, Input, Layout, Text} from "@ui-kitten/components";
-import {createPlayer} from "../controller/Player";
-import {setMe} from "../actions/Player";
+import {createPlayer} from "../../controller/Player";
+import {setMe} from "../../actions/Player";
 import {connect} from "react-redux";
+import theme from "../../theme";
 
 function SignupScreen(props: { onNameProvided: (name: string) => void }) {
     const [currentName, setCurrentName] = useState('');
@@ -12,26 +13,34 @@ function SignupScreen(props: { onNameProvided: (name: string) => void }) {
             <Card style={{width: '90%'}}>
                 <Text category='h1'>Willkommen!</Text>
                 <Text category='s1'>Bevor es los geht: Wie sollen wir dich nennen?</Text>
-                <Input size='large' placeholder='Weltretter' style={{marginTop: 24, marginBottom: 16}}
+                <Input size='large' placeholder='Weltretter' style={styles.input}
                        onChangeText={setCurrentName}
-                       onSubmitEditing={() => props.onNameProvided(currentName)}>{currentName}</Input>
+                       onSubmitEditing={() => props.onNameProvided(currentName)}
+                       textStyle={styles.inputText}
+                >{currentName}</Input>
                 <Button onPress={() => props.onNameProvided(currentName)}>Los geht’s!</Button>
-             </Card>
+            </Card>
             <Layout style={{flex: 2}}/>
         </Layout>
     )
 }
 
-function mapStateToProps(state) {
-    return {}
-}
-
-function mapDispatchToProps(dispatch, props) {
-    return {
-        onNameProvided: (name: string) => {
-            createPlayer(name).then(player => dispatch(setMe(player)))
-        }
+const styles = {
+    input: {
+        marginTop: 24,
+        marginBottom: 16
+    },
+    inputText: {
+        color: theme['text-alternate-color']
     }
-}
+};
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = (dispatch, props) => ({
+    onNameProvided: (name: string) => {
+        createPlayer(name).then(player => dispatch(setMe(player)))
+    }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen);

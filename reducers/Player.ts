@@ -1,7 +1,7 @@
 import MeState from "../state/Me";
 import {PlayerAction, SET_ME} from "../actions/Player";
 import createSecureStore from "redux-persist-expo-securestore";
-import { persistStore, persistReducer } from 'redux-persist'
+import {persistReducer} from 'redux-persist'
 
 const secureStorage = createSecureStore();
 
