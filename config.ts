@@ -1,3 +1,3 @@
 export default {
-    baseUrl: 'https://api.pandemieduell.de'
-}
+  baseUrl: "https://api.pandemieduell.de"
+};

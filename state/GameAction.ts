@@ -1,3 +1,3 @@
 export default interface GameAction {
-  description
+  description;
 }

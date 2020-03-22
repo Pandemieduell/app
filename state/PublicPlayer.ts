@@ -1,4 +1,4 @@
 export default interface PublicPlayer {
-  name: string,
-  id: string
+  name: string;
+  id: string;
 }

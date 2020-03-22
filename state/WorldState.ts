@@ -1,3 +1,1 @@
-export default interface WorldState {
-
-}
+export default interface WorldState {}

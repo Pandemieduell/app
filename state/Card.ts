@@ -1,3 +1,1 @@
-export default interface Card {
-
-}
+export default interface Card {}
