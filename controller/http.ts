@@ -1,5 +1,4 @@
-import UserCredentials from "../state/PlayerCredentials";
-
+import base64 from "base-64";
 import {unexpectedResponseError} from "./ErroHandler";
 import PlayerCredentials from "../state/PlayerCredentials";
 
@@ -14,7 +13,7 @@ export function withDefaultHeaders(existingHeaders: HeadersInit = {}): HeadersIn
 
 export function withAuthorization(player: PlayerCredentials, existingHeaders: HeadersInit = {}): HeadersInit {
     return {
-        Authorization: 'Basic ' + btoa(`${player.id}:${player.token}`),
+        Authorization: 'Basic ' + base64.encode(`${player.id}:${player.token}`),
         ...existingHeaders
     }
 }

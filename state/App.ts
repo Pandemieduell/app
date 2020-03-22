@@ -1,7 +1,7 @@
 import Me from "./Me";
-import Duel from "./Duel";
+import DuelContainer from "./DuelContainer";
 
 export default interface AppState {
-    me: Me,
-    duels: Duel[]
+    me: Me
+    duels: DuelContainer
 }

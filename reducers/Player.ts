@@ -1,7 +1,8 @@
 import MeState from "../state/Me";
-import {PlayerAction, SET_ME} from "../actions/Player";
+import {CREATE_ME, PlayerAction, SET_ME} from "../actions/Player";
 import createSecureStore from "redux-persist-expo-securestore";
 import {persistReducer} from 'redux-persist'
+import {Reducer} from "redux";
 
 const secureStorage = createSecureStore();
 
@@ -22,4 +23,4 @@ function playerReducer(state: MeState = {player: undefined}, action: PlayerActio
     }
 }
 
-export default persistReducer(mePersistConfig, playerReducer);
+export default persistReducer(mePersistConfig, playerReducer) as Reducer<MeState, PlayerAction>;

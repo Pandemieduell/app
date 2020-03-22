@@ -14,6 +14,11 @@ import DuelList from "../duels/DuelList";
 import {StyleSheet} from "react-native";
 import theme from "../../theme";
 import {SafeAreaView} from "react-native-safe-area-context";
+import {createDuel} from "../../actions/Duel";
+import CreatedDuel from "../../state/PendingDuel";
+import FriendDuelModal from "../duels/FriendDuelModal";
+import {deleteData} from "../../actions/App";
+import DuelLauncher from "../duels/DuelLauncher";
 
 const MenuIcon = (style) => (<Icon {...style} name='more-vertical'/>);
 
@@ -26,7 +31,7 @@ const menuData = [
     },
 ];
 
-function DuelListScreen(props: { onGameStarted: () => void }) {
+function DuelListScreen(props: { createDuel: (random: boolean) => void, deleteData: () => void, createdDuel?: CreatedDuel }) {
     const [menuVisible, setMenuVisible] = React.useState(false);
     const toggleMenu = () => setMenuVisible(!menuVisible);
 
@@ -46,19 +51,18 @@ function DuelListScreen(props: { onGameStarted: () => void }) {
 
     return (
         <SafeAreaView style={styles.screen}>
-            <TopNavigation title='Hi' style={styles.navigation}/>
+            <TopNavigation title='' style={styles.navigation}/>
             <Layout level='4' style={{flex: 3, justifyContent: 'flex-start', alignItems: 'center'}}>
                 <Card style={styles.duelList}
                       header={() => <CardHeader title='Deine Duelle' style={styles.duelListHeader}/>}>
                     <DuelList/>
                 </Card>
+                <Button onPress={props.deleteData}>Delete All Data</Button>
             </Layout>
             <Layout level='4' style={{flex: 0, justifyContent: 'flex-start', alignItems: 'center'}}>
-                <Button onPress={() => props.onGameStarted()} style={styles.largeButton} size='large'>
-                    Neues Duell starten
-                </Button>
-                <Button style={styles.largeButton} size='large'>Einem Duell beitreten</Button>
+                <DuelLauncher/>
             </Layout>
+            <FriendDuelModal/>
         </SafeAreaView>
     )
 }
@@ -73,10 +77,6 @@ const styles = StyleSheet.create({
     navigation: {
         backgroundColor: theme['background-basic-color-4']
     },
-    largeButton: {
-        width: '90%',
-        marginBottom: 20
-    },
     duelListHeader: {
         backgroundColor: theme['background-basic-color-2']
     },
@@ -89,8 +89,10 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = (dispatch, props) => ({
-    onGameStarted: () => {
-    }
+    createDuel: (random: boolean) => {
+        dispatch(createDuel(random))
+    },
+    deleteData: () => dispatch(deleteData())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DuelListScreen);

@@ -1,8 +1,6 @@
 import config from "../config";
 import {expectOkJson, withDefaultHeaders} from "./http";
 import PrivatePlayer from "../state/PrivatePlayer";
-import store from "../store";
-import {setMe} from "../actions/Player";
 
 const TOKEN_LENGTH = 50;
 
